@@ -8,7 +8,6 @@ import dao.UsuarioDAO;
 import dao.TarjetaDao;
 import java.util.ArrayList;
 import java.util.Scanner;
-import CONNECTION.Conexion;
 
 public class bd1 {
     static Scanner scan = new Scanner(System.in);
@@ -255,7 +254,7 @@ public class bd1 {
         //rEGISTRAR TARJETAS
         public static void registrarTarjeta() {
 
-        if ()
+
 
             System.out.print("Ingrese el ID del usuario dueño de la tarjeta: ");
             int idUsuario;
@@ -367,9 +366,33 @@ public class bd1 {
 
     public static void deletear_tarjeta (){
         mostrar_tarjetas();
-        System.out.println("Ingrese el ID de la tarjeta a eliminar");
-        int tarjeta_eliminar = Validacion.Scanner_enteros(scan,"");
+        int tarjeta_elimi = -1;
 
+        try {
+            System.out.print("Ingrese el ID d la tarjeta a eliminar ");
+            tarjeta_elimi = Integer.parseInt(scan.nextLine());
+        } catch (Exception e) {
+            System.out.println("ID inválido.");
+            return;
+        }
+        Tarjeta tarje = dao.(tarjeta_elimi);
+        if (tarje == null) {
+            System.out.println("Usuario no encontrado.");
+            return;
+        }
+        System.out.println("Usuario encontrado:");
+        System.out.println(usuario.getNombre());
+        System.out.print("¿Está seguro de eliminarlo? (S/N): ");
+        String respuesta = scan.nextLine().toUpperCase();
+        if (!respuesta.equals("S")) {
+            System.out.println("Operación cancelada.");
+            return;
+        }
+        if (dao.eliminar(tarjeta_elimi)) {
+            System.out.println("Usuario eliminado correctamente.");
+        } else {
+            System.out.println("No fue posible eliminar al usuario.");
+        }
 
     }
 
