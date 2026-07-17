@@ -46,10 +46,14 @@ public class bd1 {
                                 buscarUsuario();
                                 break;
                             case 4:
-                                eliminarUsuario();
+                                editarUsuario();
                                 break;
                             case 5:
-                                System.out.println("\nSALIENDO...");
+                                eliminarUsuario();
+                                break;
+                            case 6:
+                                System.out.println("Saliendo");
+
                                 break;
 
                             default:
@@ -58,14 +62,42 @@ public class bd1 {
                     } catch (Exception e) {
                         System.out.println("\nDebe ingresar un número.");
                     }
-                    if (opcion != 5) {
+                    if (opcion != 6) {
                         System.out.println("\nPresione ENTER para continuar...");
                         scan.nextLine();
                     }
-                } while (opcion != 5);
+                } while (opcion != 6);
                 break;
                 case 2 :
-                    //Aqui ira el menu de tarjetas
+                    int opcion_tarje = -1;
+                    do {
+                        menu_tarjeta();
+                        opcion_tarje = Validacion.Scanner_enteros(scan, "");
+                        switch (opcion_tarje) {
+                            case 1:
+                                mostrar_tarjetas();
+                                break;
+                            case 2:
+                                registrarTarjeta();
+                                break;
+                            case 3:
+                                mostrarTarjetaIndividual();
+                                break;
+                            case 4:
+                                System.out.println("En proceso");
+                                break;
+                            case 5:
+                                System.out.println("Saliendo...");
+                                break;
+                            default:
+                                System.out.println("Opcion Invalida");
+                        }
+                        if (opcion_tarje!= 5) {
+                            System.out.println("\nPresione ENTER para continuar...");
+                            scan.nextLine();
+                        }
+                    } while (opcion_tarje!=5 );
+
                     break;
 
                 default:
@@ -364,38 +396,74 @@ public class bd1 {
         }
     }
 
-    public static void deletear_tarjeta (){
-        mostrar_tarjetas();
-        int tarjeta_elimi = -1;
+    public static void mostrarTarjetaIndividual() {
 
-        try {
-            System.out.print("Ingrese el ID d la tarjeta a eliminar ");
-            tarjeta_elimi = Integer.parseInt(scan.nextLine());
-        } catch (Exception e) {
-            System.out.println("ID inválido.");
-            return;
-        }
-        Tarjeta tarje = dao.(tarjeta_elimi);
-        if (tarje == null) {
-            System.out.println("Usuario no encontrado.");
-            return;
-        }
-        System.out.println("Usuario encontrado:");
-        System.out.println(usuario.getNombre());
-        System.out.print("¿Está seguro de eliminarlo? (S/N): ");
-        String respuesta = scan.nextLine().toUpperCase();
-        if (!respuesta.equals("S")) {
-            System.out.println("Operación cancelada.");
-            return;
-        }
-        if (dao.eliminar(tarjeta_elimi)) {
-            System.out.println("Usuario eliminado correctamente.");
-        } else {
-            System.out.println("No fue posible eliminar al usuario.");
+
+        System.out.print("Ingrese el ID de la tarjeta que desea consultar: ");
+
+        int idBuscar;
+        while (true) {
+            try {
+                idBuscar = Integer.parseInt(scan.nextLine());
+                break;
+            } catch (NumberFormatException e) {
+                System.out.print("Error: Ingrese solo números válidos. Intente de nuevo: ");
+            }
         }
 
+
+        Tarjeta tarjeta = tarjed.buscar(idBuscar);
+
+        if (tarjeta == null) {
+            System.out.println("\n[ERROR] No se encontró ninguna tarjeta con el ID: " + idBuscar);
+            return;
+        }
+
+
+        System.out.printf("ID Tarjeta:          %d%n", tarjeta.getId_tarjeta());
+        System.out.printf("Número de Tarjeta:   %s%n", tarjeta.getNumero());
+        System.out.printf("CLABE Interbancaria: %s%n", tarjeta.getClabe());
+        System.out.printf("Fecha de Expiración: %s%n", tarjeta.getFecha_exp());
+        System.out.printf("CVV (Seguridad):     %s%n", tarjeta.getCvv());
+        System.out.printf("Tipo de Cuenta:      %s%n", tarjeta.getTipo().equalsIgnoreCase("D") ? "Débito" : "Crédito");
+        System.out.printf("Saldo Disponible:    $%.2f%n", tarjeta.getSaldo());
+        System.out.printf("Límite de Crédito:   $%.2f%n", tarjeta.getCredito());
+        System.out.printf("Estado de Tarjeta:   %s%n", tarjeta.isActivo() ? "ACTIVA / OPERATIVA" : "INACTIVA / BLOQUEADA");
+        System.out.printf("ID Usuario Dueño:    %d%n", tarjeta.getId_user());
     }
 
+//    public static void deletear_tarjeta (){
+//        mostrar_tarjetas();
+//        int tarjeta_elimi = -1;
+//
+//        try {
+//            System.out.print("Ingrese el ID d la tarjeta a eliminar ");
+//            tarjeta_elimi = Integer.parseInt(scan.nextLine());
+//        } catch (Exception e) {
+//            System.out.println("ID inválido.");
+//            return;
+//        }
+//        Tarjeta tarje = dao.(tarjeta_elimi);
+//        if (tarje == null) {
+//            System.out.println("Usuario no encontrado.");
+//            return;
+//        }
+//        System.out.println("Usuario encontrado:");
+//        System.out.println(usuario.getNombre());
+//        System.out.print("¿Está seguro de eliminarlo? (S/N): ");
+//        String respuesta = scan.nextLine().toUpperCase();
+//        if (!respuesta.equals("S")) {
+//            System.out.println("Operación cancelada.");
+//            return;
+//        }
+//        if (dao.eliminar(tarjeta_elimi)) {
+//            System.out.println("Usuario eliminado correctamente.");
+//        } else {
+//            System.out.println("No fue posible eliminar al usuario.");
+//        }
+//
+//    }
+//
 
 
 
