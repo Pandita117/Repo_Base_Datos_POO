@@ -1,0 +1,17 @@
+<component name="libraryTable">
+  <library name="adaptive">
+    <CLASSES />
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$USER_HOME$/Downloads/enu/samples/adaptive" />
+      <root url="file://$USER_HOME$/Downloads/enu/samples/alwaysencrypted" />
+      <root url="file://$USER_HOME$/Downloads/enu/samples/azureactivedirectoryauthentication" />
+      <root url="file://$USER_HOME$/Downloads/enu/samples/connections" />
+      <root url="file://$USER_HOME$/Downloads/enu/samples/constrained" />
+      <root url="file://$USER_HOME$/Downloads/enu/samples/dataclassification" />
+      <root url="file://$USER_HOME$/Downloads/enu/samples/datatypes" />
+      <root url="file://$USER_HOME$/Downloads/enu/samples/resultsets" />
+      <root url="file://$USER_HOME$/Downloads/enu/samples/sparse" />
+    </SOURCES>
+  </library>
+</component>

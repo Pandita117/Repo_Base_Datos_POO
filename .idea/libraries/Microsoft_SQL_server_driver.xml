@@ -3,10 +3,12 @@
     <properties>
       <sourceFilesUrls>
         <item url="file://$USER_HOME$/Downloads/enu" />
+        <item url="file://$USER_HOME$/Downloads/sqljdbc_13.4" />
       </sourceFilesUrls>
     </properties>
     <CLASSES>
       <root url="file://$USER_HOME$/Downloads/enu" />
+      <root url="file://$USER_HOME$/Downloads/sqljdbc_13.4" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

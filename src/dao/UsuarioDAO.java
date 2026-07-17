@@ -12,7 +12,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.List;
 
 import Interfaces.IUsuarioDAO;
 import Models.Usuario;
@@ -48,16 +47,15 @@ public class UsuarioDAO implements IUsuarioDAO {
              ResultSet rs = ps.executeQuery()) {
 
             while (rs.next()) {
-                Usuario u = new Usuario(
-                        rs.getString("nombre").trim(),
-                        rs.getString("apellido").trim(),
-                        rs.getString("email").trim(),
-                        rs.getString("password").trim(),
-                        rs.getInt("edad"),
-                        rs.getInt("id_user"),
-                        rs.getBoolean("activo")
-                );
-                lista.add(u);
+                Usuario user = new Usuario();
+                user.setId_user(rs.getInt("id_user"));
+                user.setNombre(rs.getString("nombre") != null ? rs.getString("nombre").trim() : "");
+                user.setApellido(rs.getString("apellido") != null ? rs.getString("apellido").trim() : "");
+                user.setEdad(rs.getInt("edad"));
+                user.setEmail(rs.getString("email") != null ? rs.getString("email").trim() : "");
+                user.setPassword(rs.getString("password") != null ? rs.getString("password").trim() : "");
+                user.setActivo(rs.getBoolean("activo"));
+                lista.add(user);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -123,15 +121,17 @@ public class UsuarioDAO implements IUsuarioDAO {
             ps.setInt(1, id);
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
-                    return new Usuario(
-                            rs.getString("nombre").trim(),
-                            rs.getString("apellido").trim(),
-                            rs.getString("email").trim(),
-                            rs.getString("password").trim(),
-                            rs.getInt("edad"),
-                            rs.getInt("id_user"),
-                            rs.getBoolean("activo")
-                    );
+                    Usuario u = new Usuario(); // Objeto limpio
+
+                    u.setId_user(rs.getInt("id_user"));
+                    u.setNombre(rs.getString("nombre") != null ? rs.getString("nombre").trim() : "");
+                    u.setApellido(rs.getString("apellido") != null ? rs.getString("apellido").trim() : "");
+                    u.setEdad(rs.getInt("edad"));
+                    u.setEmail(rs.getString("email") != null ? rs.getString("email").trim() : "");
+                    u.setPassword(rs.getString("password") != null ? rs.getString("password").trim() : "");
+                    u.setActivo(rs.getBoolean("activo"));
+
+                    return u;
                 }
             }
         } catch (Exception e) {

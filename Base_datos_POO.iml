@@ -8,5 +8,8 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Microsoft SQL server driver" level="project" />
+    <orderEntry type="library" name="Microsoft dirvers" level="project" />
+    <orderEntry type="library" name="adaptive" level="project" />
+    <orderEntry type="library" name="mssql-jdbc-13.4.0.jre8-sources" level="project" />
   </component>
 </module>
